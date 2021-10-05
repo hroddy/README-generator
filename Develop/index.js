@@ -56,7 +56,7 @@ const generateMarkdown = require("./utils/generateMarkdown");
             {
                 type: 'input',
                 name: 'author',
-                message: "Who worked on this project? List everyone's names and Github profile links.",
+                message: "Who worked on this project? List everyone's names, emails, and Github profile links.",
                 validate: (author) => {
                     if (author) {
                       return true;

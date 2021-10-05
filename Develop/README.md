@@ -1,6 +1,10 @@
+# README generator
 
-# gregeg
-### gesgs
+  ----
+## Description
+### Quickly create a well formatted markdown document that details the purpose and use of your project.
+
+----
 
 ## Table of Contents
 
@@ -9,15 +13,22 @@
   *  [Credit](#credit)
   *  [License](#license)
 
+----
 
 ## Installation
+Clone this repository onto your local machine. Navigate in the terminal shell to the newly cloned repo. Use the command "npm install" to download the required packages to run the program.
 
+----
 
 ## Usage
-gagr
+Use the command "node index.js" to begin the program. Answer the prompts. After the last question is finished, your README.md file will appear within the repository.
+
+----
 
 ## Credit
-rgag
+Hannah Roddy. Email: hannah.roddy@gmail.com. Github: github.com/hroddy
+
+----
 
 ## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)

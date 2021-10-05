@@ -15,6 +15,7 @@ function generateMarkdown(data) {
   return `# ${data.projectName}
 
   ----
+## Description
 ### ${data.projectDesc}
 
 ----
@@ -25,12 +26,12 @@ ${determineTableContent(data.tableContent)}
 ----
 
 ## Installation
-${determineInstallation(data.installation)}
+${data.installation}
 
 ----
 
 ## Usage
-${determineUsage(data.usage)}
+${data.usage}
 
 ----
 
@@ -56,23 +57,23 @@ function determineTableContent(tableContent) {
   }
 }
 
-function determineInstallation(installation) {
-  if (installation === true) {
-    return `${data.installation}`
-  }
-  else {
-    return ``
-  }
-}
+// function determineInstallation(installation) {
+//   if (installation === true) {
+//     return `${data.installation}`
+//   }
+//   else {
+//     return ``
+//   }
+// }
 
-function determineUsage(usage) {
-  if (usage === true) {
-    return `${data.usage}`
-  }
-  else {
-    return ``
-  }
-}
+// function determineUsage(usage) {
+//   if (usage === true) {
+//     return `${data.usage}`
+//   }
+//   else {
+//     return ``
+//   }
+// }
 
 function determineLicense(license) {
   switch (license) {
