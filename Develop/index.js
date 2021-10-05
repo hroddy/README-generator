@@ -5,54 +5,12 @@ const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
-const questions = [
-    {
-        type: 'input',
-        name: 'project-name',
-        message: "What is your project name?"
-    },
-    {
-        type: 'input',
-        name: 'project-desc',
-        message: "Briefly describe (1-2 sentences) the purpose of your project."
-    },
-    {
-        type: 'input',
-        name: 'table-content',
-        message: "Would you like to add a table of content?"
-    },
-    {
-        type: 'input',
-        name: 'installation',
-        message: "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running."
-    },
-    {
-        type: 'input',
-        name: 'usage',
-        message: "Provide instructions and examples for use. Include screenshots as needed."
-    },
-    {
-        type: 'input',
-        name: 'collab',
-        message: "List your collaborators, if any, with links to their GitHub profiles."
-    },
-    {
-        type: 'input',
-        name: 'license',
-        message: "List your collaborators, if any, with links to their GitHub profiles."
-    },
-    {
-        type: 'list',
-        name: 'license',
-        message: "List your collaborators, if any, with links to their GitHub profiles.",
-        choices: ["MIT - Allow others to make and distrubute closed source versions", "GNU GPLv3 - Allow others do almost anything they want with your project, except distributing closed source versions."]
-    },
-];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    inquirer.prompt ([
-        [
+
+// TODO: Create a function to initialize app
+
+    const questions = [
+        
             {
                 type: 'input',
                 name: 'projectName',
@@ -81,46 +39,56 @@ function writeToFile(fileName, data) {
             },
             {
                 type: 'confirm',
-                name: 'table-content',
+                name: 'tableContent',
                 message: "Would you like to include a table of contents?",
                 default: true
             },
             {
                 type: 'input',
                 name: 'installation',
-                message: "What are the steps required to install your project? Hit enter to skip this step."
+                message: "What are the steps required to install your project? Hit enter to leave this section blank."
             },
             {
                 type: 'input',
                 name: 'usage',
-                message: "Provide instructions and examples for use or hit enter to skip."
+                message: "Provide instructions and examples for use or hit enter to leave this section blank."
             },
             {
                 type: 'input',
                 name: 'author',
-                message: "Who worked on this project? List your name and link to your own GitHub profile."
+                message: "Who worked on this project? List everyone's names and Github profile links.",
+                validate: (author) => {
+                    if (author) {
+                      return true;
+                    } else {
+                      console.log("Author required. You must enter at least one name and Github profile link.");
+                      return false;
+                    }
+                }
             },
-            {
-                type: 'confirm',
-                name: 'collab',
-                message: "Would you like to add a collaborator? Remember to include their their GitHub profile. (Enter to skip)"
-            },
-            //TODO: license nessacery?
             {
                 type: 'list',
                 name: 'license',
-                message: "List your collaborators, if any, with links to their GitHub profiles.",
+                message: "Please select a license. (Default without selection: MIT)",
                 choices: ["MIT - Allow others to make and distrubute closed source versions", "GNU GPLv3 - Allow others do almost anything they want with your project, except distributing closed source versions."]
             },
             
-    ]).then(answers => {
-        const answers = answers
-        //push to README file
-        fs.writeFileSync('README.md', generateMarkdown(answers), 'utf-8')
+    ]
+    
+function writeToFile(fileName, data) {
+    //push to README file
+    fs.writeFileSync(fileName, generateMarkdown(data), 'utf-8')
 }
 
-// TODO: Create a function to initialize app
-function init() {}
+function init() {
+    // TODO: Create a function to write README file
+    inquirer.prompt (questions).then(answers => {
+        const data = answers
+        writeToFile('README.md', data)
+    })
+    
+}
 
 // Function call to initialize app
 init();
+
